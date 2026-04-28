@@ -115,9 +115,82 @@
 ###############################################
 # Day 6
 ###############################################
-file = open("todos.txt", "r")
-todos = file.readlines()
-file.close()
+# file = open("todos.txt", "r")
+# todos = file.readlines()
+# file.close()
+        
+# while True:
+#     user_action = input("Type add, show, edit, complete or exit:")
+#     user_action = user_action.strip()
+    
+#     match user_action:
+#         case "add":
+#             todo = input("Enter a todo: ") + "\n"
+            
+#             todos.append(todo.capitalize())
+            
+#             file = open("todos.txt", "w")
+#             file.writelines(todos)
+#             file.close()
+#         case "show" | "display":
+#             for index, item in enumerate(todos):
+#                 row = f"{index + 1}-{item}"
+#                 print(row)
+#         case "edit":
+#             number = int(input("Number of the todo to edit: "))
+#             number = number - 1
+#             new_todo = input("Enter new todo: ") + "\n"
+#             todos[number] = new_todo.capitalize()
+#         case "complete":
+#             number = int(input("Number of the todo to complete: "))
+#             number = number - 1
+#             todos.pop(number)
+#         case "exit":
+#             break
+
+###############################################
+# Day 7
+###############################################
+# file = open("todos.txt", "r")
+# todos = file.readlines()
+# file.close()
+        
+# while True:
+#     user_action = input("Type add, show, edit, complete or exit:")
+#     user_action = user_action.strip()
+    
+#     match user_action:
+#         case "add":
+#             todo = input("Enter a todo: ") + "\n"
+            
+#             todos.append(todo.capitalize())
+            
+#             file = open("todos.txt", "w")
+#             file.writelines(todos)
+#             file.close()
+#         case "show" | "display":
+#             for index, item in enumerate(todos):
+#                 item = item.strip('\n')
+#                 row = f"{index + 1}-{item}"
+#                 print(row)
+#         case "edit":
+#             number = int(input("Number of the todo to edit: "))
+#             number = number - 1
+#             new_todo = input("Enter new todo: ") + "\n"
+#             todos[number] = new_todo.capitalize()
+#         case "complete":
+#             number = int(input("Number of the todo to complete: "))
+#             number = number - 1
+#             todos.pop(number)
+#         case "exit":
+#             break
+
+
+###############################################
+# Day 8
+###############################################
+with open('todos.txt' , 'r') as file:
+    todos = file.readlines()
         
 while True:
     user_action = input("Type add, show, edit, complete or exit:")
@@ -129,21 +202,35 @@ while True:
             
             todos.append(todo.capitalize())
             
-            file = open("todos.txt", "w")
-            file.writelines(todos)
-            file.close()
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
+
         case "show" | "display":
             for index, item in enumerate(todos):
+                item = item.strip('\n')
                 row = f"{index + 1}-{item}"
                 print(row)
+
         case "edit":
             number = int(input("Number of the todo to edit: "))
             number = number - 1
             new_todo = input("Enter new todo: ") + "\n"
             todos[number] = new_todo.capitalize()
+
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
+
         case "complete":
             number = int(input("Number of the todo to complete: "))
-            number = number - 1
-            todos.pop(number)
+            index = number - 1
+            todo_to_remove = todos[index].strip("\n")
+            todos.pop(index)
+
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
+
+            message = f"Todo {todo_to_remove} was removed from the list."
+            print(message)
+
         case "exit":
             break
