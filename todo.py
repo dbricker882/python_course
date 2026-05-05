@@ -254,14 +254,14 @@ while True:
         with open('todos.txt', 'w') as file:
             file.writelines(todos)
 
-    elif "show" | "display" in user_action:
+    elif "show" in user_action or "display" in user_action:
         for index, item in enumerate(todos):
             item = item.strip('\n')
             row = f"{index + 1}-{item}"
             print(row)
 
     elif "edit" in user_action:
-        number = int(input("Number of the todo to edit: "))
+        number = int(user_action[5:])
         number = number - 1
         new_todo = input("Enter new todo: ") + '\n'
         todos[number] = new_todo.capitalize()
@@ -270,7 +270,7 @@ while True:
             file.writelines(todos)
 
     elif "complete" in user_action:
-        number = int(input("Number of the todo to complete: "))
+        number = number = int(user_action[9:])
         index = number - 1
         todo_to_remove = todos[index].strip('\n')
         todos.pop(index)
