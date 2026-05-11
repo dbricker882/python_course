@@ -1,2 +1,3 @@
-Eat
-Play
+Sleep
+Eat more
+Work
