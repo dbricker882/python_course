@@ -1,7 +1,13 @@
 def get_average():
-    with open("files/bonus11_data.txt", 'r') as file:
+    with open("bonus/files/bonus11_data.txt", 'r') as file:
         data = file.readlines()
-    return data
+    
+    values = data[1:]
+    values = [float(i) for i in values]
+
+    average_local = sum(values)/len(values)
+    return average_local
 
 average = get_average()
 print(average)
+
